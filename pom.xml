@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.example</groupId>
+  <artifactId>order-service</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Order Camel Service</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.jetbrains</groupId>
+      <artifactId>annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.persistence</groupId>
+      <artifactId>jakarta.persistence-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.enterprise</groupId>
+      <artifactId>jakarta.enterprise.cdi-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-api</artifactId>
+      <version>4.11.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.logging</groupId>
+      <artifactId>jboss-logging</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.transaction</groupId>
+      <artifactId>jakarta.transaction-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-orm-panache</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core-model</artifactId>
+      <version>4.11.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+    </dependency>
+      <dependency>
+          <groupId>io.vertx</groupId>
+          <artifactId>vertx-core</artifactId>
+      </dependency>
+    <dependency>
+      <groupId>io.smallrye.common</groupId>
+      <artifactId>smallrye-common-vertx-context</artifactId>
+    </dependency>
+  </dependencies>
+
+  <parent>
+    <groupId>org.example</groupId>
+    <artifactId>bom</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../bom/pom.xml</relativePath>
+  </parent>
+
+  <modules>
+    <module>openapi</module>
+    <module>data-access</module>
+    <module>domain</module>
+    <module>rest-api</module>
+    <module>container</module>
+  </modules>
+
+  <properties>
+    <revision>1.0.0</revision>
+    <changelist>-SNAPSHOT</changelist>
+    <sha1/>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <version.common.openapi>1.0.0-SNAPSHOT</version.common.openapi>
+    <version.domain.models>1.0.0-SNAPSHOT</version.domain.models>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jandex.maven.plugin.version>3.1.2</jandex.maven.plugin.version>
+    <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+    <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
+    <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
+    <jandex.maven.plugin.version>3.1.2</jandex.maven.plugin.version>
+    <openapi.target>target/openapi</openapi.target>
+  </properties>
+
+</project>

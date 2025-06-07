@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Order API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+paths:
+  /orders:
+    post:
+      summary: Create a new order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderDto'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDto'
+          description: Successful operation
+          headers:
+            Location:
+              description: Location of new resource
+              schema:
+                type: string
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+          description: Bad Request
+  /orders/{id}:
+    get:
+      summary: Get order by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+      responses:
+        '201':
+          description: Order retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDto'
+        "400":
+          description: Invalid id value
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+components:
+  schemas:
+    Customer:
+      type: object
+      required:
+        - id
+        - name
+        - email
+      properties:
+        id:
+          format: uuid
+          type: string
+          readOnly: true
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+    Item:
+      type: object
+      required:
+        - Id
+        - quantity
+        - unitPrice
+      properties:
+        Id:
+          format: uuid
+          type: string
+          readOnly: true
+        quantity:
+          type: integer
+          minimum: 1
+        unitPrice:
+          type: number
+          format: double
+
+    OrderDto:
+      type: object
+      required:
+        - orderId
+        - customer
+        - items
+        - orderDate
+      properties:
+        orderId:
+          format: uuid
+          type: string
+          readOnly: true
+        customer:
+          $ref: '#/components/schemas/Customer'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        orderDate:
+          type: string
+          format: date-time
+    ApiErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
